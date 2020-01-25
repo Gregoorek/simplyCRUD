@@ -13,7 +13,7 @@ namespace App\Controller;
          * @return Response
          * @throws
          */
-        public function curentDate() :Response
+        public function currentDate() :Response
          {
             $currentDate = new \DateTime();
             return $this->getDataResponse('current date ',$currentDate);
