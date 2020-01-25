@@ -9,15 +9,25 @@ namespace App\Controller;
     class CurrentDateController
     {
         /**
-         * @Route(path="/index")
+         * @Route(path="/index",name="curentDate")
          * @return Response
          * @throws
          */
-        public function main() :Response
+        public function curentDate() :Response
          {
             $currentDate = new \DateTime();
+            $currentDateFormat = $currentDate->format(DATE_ATOM);
+            $html = <<< EOT
+            <html>
+            <body>
+                <h1>curent data</h1>
+                <p>$currentDateFormat</p>
+            </body>
+            </html>
+EOT;
 
-            return new Response("<html><body>".$currentDate->format(DATE_ATOM)."</body></html>"    );
+
+            return new Response($html);
 
 
         }
