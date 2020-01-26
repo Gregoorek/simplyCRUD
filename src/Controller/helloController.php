@@ -11,11 +11,11 @@ use Symfony\Component\HttpFoundation\Response;
 class helloController extends AbstractController
 {
     /**
-     * @Route(path="/index", methods={"GET"}, name="hello")
+     * @Route(path="/hi/{name}", name="hello")
      * @param string $name
      * @param Request $request
      * @return Response
-     * @throws \Exception
+     *
      */
 
     public function hello(string $name ,Request $request):Response
@@ -26,13 +26,13 @@ class helloController extends AbstractController
     }
 
     /**
-     * @Route(path="/redirect/{action}", requirements={"hello|currentDate"} , name="hello2")
+     * @Route(path="/redirect/{action}" ,requirements={"action"="hello|curentDate"} )
      * @param string $action
      * @return RedirectResponse
      * @throws \Exception
      */
 
-    public function moceToAction(string $action):RedirectResponse
+    public function moveToAction(string $action):RedirectResponse
     {
         return $this->redirectToRoute($action, ['name'=>'some name']);
     }
