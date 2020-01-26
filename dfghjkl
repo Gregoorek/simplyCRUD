@@ -1,0 +1,61 @@
+[33mcommit f28a29902b7088bff48e95dbfafa1cd8d84400d1[m[33m ([m[1;36mHEAD[m[33m)[m
+Author: Grzegorz Grudzień <grzes1987@gmail.com>
+Date:   Sat Jan 25 18:57:59 2020 +0100
+
+    routing zaawansowany
+
+ config/routes.yaml                       |  2 [32m+[m[31m-[m
+ src/Controller/CurrentDateController.php | 16 [32m+++++++++++++[m[31m---[m
+ 2 files changed, 14 insertions(+), 4 deletions(-)
+
+[33mcommit 02d1affdff42765953cf7244d3859fa91ef702fd[m
+Author: Grzegorz Grudzień <grzes1987@gmail.com>
+Date:   Sat Jan 25 17:03:02 2020 +0100
+
+    nowe pliki
+
+ config/packages/sensio_framework_extra.yaml |  3 [32m+++[m
+ config/routes/annotations.yaml              |  3 [32m+++[m
+ src/Controller/test.php                     | 10 [32m++++++++++[m
+ 3 files changed, 16 insertions(+)
+
+[33mcommit a34906c980056efbb53aeccec87c54155ca08ce9[m
+Author: Grzegorz Grudzień <grzes1987@gmail.com>
+Date:   Sat Jan 25 17:00:49 2020 +0100
+
+    composer
+
+ composer.json                            |   1 [32m+[m
+ composer.lock                            | 210 [32m++++++++++++++++++++++++++++++[m[31m-[m
+ config/bundles.php                       |   1 [32m+[m
+ config/routes.yaml                       |   6 [32m+[m[31m-[m
+ src/Controller/CurrentDateController.php |  25 [32m++++[m
+ symfony.lock                             |  27 [32m++++[m
+ 6 files changed, 266 insertions(+), 4 deletions(-)
+
+[33mcommit 0a5eb6342b57fce0b675c5b58e8b3e51f967c0e0[m
+Author: Grzegorz Grudzień <grzes1987@gmail.com>
+Date:   Sat Jan 25 15:12:23 2020 +0100
+
+    Add initial set of files
+
+ .env                                |   21 [32m+[m
+ .gitignore                          |   10 [32m+[m
+ bin/console                         |   42 [32m+[m
+ composer.json                       |   62 [32m++[m
+ composer.lock                       | 1798 [32m+++++++++++++++++++++++++++++++++++[m
+ config/bootstrap.php                |   23 [32m+[m
+ config/bundles.php                  |    5 [32m+[m
+ config/packages/cache.yaml          |   19 [32m+[m
+ config/packages/framework.yaml      |   16 [32m+[m
+ config/packages/prod/routing.yaml   |    3 [32m+[m
+ config/packages/routing.yaml        |    3 [32m+[m
+ config/packages/test/framework.yaml |    4 [32m+[m
+ config/routes.yaml                  |    3 [32m+[m
+ config/routes/dev/framework.yaml    |    3 [32m+[m
+ config/services.yaml                |   27 [32m+[m
+ public/index.php                    |   27 [32m+[m
+ src/Controller/.gitignore           |    0
+ src/Kernel.php                      |   54 [32m++[m
+ symfony.lock                        |  136 [32m+++[m
+ 19 files changed, 2256 insertions(+)
