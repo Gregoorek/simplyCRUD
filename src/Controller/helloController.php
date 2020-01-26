@@ -8,6 +8,11 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+/**
+ * Class helloController
+ * @package App\Controller
+ * @Route("/page")
+ */
 class helloController extends AbstractController
 {
     /**
@@ -35,5 +40,17 @@ class helloController extends AbstractController
     public function moveToAction(string $action):RedirectResponse
     {
         return $this->redirectToRoute($action, ['name'=>'some name']);
+    }
+
+    /**
+     * @Route(path="/page/{autor}/{page}", requirements={"page"="\d+"})
+     * @param int $page
+     * @param string $autor
+     * @return Response
+     */
+
+    public function page(int $page= 1,string $autor)
+    {
+        return new Response("witaj na stronie $page for $autor");
     }
 }
