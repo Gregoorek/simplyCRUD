@@ -25,9 +25,8 @@ class helloController extends AbstractController
 
     public function hello(string $name ,Request $request):Response
     {
-        $helloText = "czesc ".$name;
-        $param1 = $request->get('param1', 'jakas wiadomosc');
-        return new Response("<html lang='pl'><body><h1>$helloText</h1><p>$param1</p></body></html>");
+        $personName = ['tomek','ania','monika'];
+        return $this ->render('hello/hi.html.twig',['name'=>$name, 'personName' => [$personName],'show'=>true]);
     }
 
     /**
