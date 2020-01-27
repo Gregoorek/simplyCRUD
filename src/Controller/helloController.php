@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Service\LuckyNumber;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,15 +19,18 @@ class helloController extends AbstractController
      * @param string $name
      * @param Request $request
      * @param LoggerInterface $logger
+     * @param LuckyNumber $number
      * @return Response
      *
      */
 
-    public function hello(string $name ,Request $request, LoggerInterface $logger):Response
+    public function hello(string $name ,Request $request, LoggerInterface $logger, LuckyNumber $luckyNumber ):Response
     {
+
+        $number = $luckyNumber->getNumber();
         $personName = ['tomek','ania','monika'];
-        $logger->debug("powitany". $name);
-        return $this ->render('hello/hi.html.twig',['name'=>$name, 'personName' => $personName,'show'=>true]);
+        $logger->debug("powitany ". $name);
+        return $this ->render( 'hello/hi.html.twig',['number'=>$number,'name'=>$name, 'personName' => $personName,'show'=>true]);
     }
 
     /**
