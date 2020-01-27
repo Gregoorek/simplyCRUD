@@ -2,31 +2,30 @@
 
 namespace App\Controller;
 
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-/**
- * Class helloController
- * @package App\Controller
- * @Route("/page")
- */
+
 class helloController extends AbstractController
 {
     /**
      * @Route(path="/hi/{name}", name="hello")
      * @param string $name
      * @param Request $request
+     * @param LoggerInterface $logger
      * @return Response
      *
      */
 
-    public function hello(string $name ,Request $request):Response
+    public function hello(string $name ,Request $request, LoggerInterface $logger):Response
     {
         $personName = ['tomek','ania','monika'];
-        return $this ->render('hello/hi.html.twig',['name'=>$name, 'personName' => [$personName],'show'=>true]);
+        $logger->debug("powitany". $name);
+        return $this ->render('hello/hi.html.twig',['name'=>$name, 'personName' => $personName,'show'=>true]);
     }
 
     /**
