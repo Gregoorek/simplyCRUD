@@ -20,14 +20,14 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
-     * @Route(path="/create", name="userkontroler")
+     * @Route(path="/create", name="user_create")
      * @param Request $request
      * @param EntityManagerInterface $entityManager
      * @return Response
      * @throws
      */
 
-    public function create(Request $request, EntityManagerInterface $entityManager):Response
+    public function create(Request $request, EntityManagerInterface $entityManager):Response //zapisywanie do bazy
     {
         if ('POST' === $request->getMethod()){
 
@@ -37,6 +37,7 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
+            return $this->redirectToRoute('user_list');   //przekeirowanie na inny route
 
         }else{
             $user = new User('');
@@ -47,14 +48,49 @@ class UserController extends AbstractController
     /**
      * @param EntityManagerInterface $entityManager
      * @return Response
-     * @Route(path="/list")
-     *
+     * @Route(path="/list" ,name="user_list")
      */
-    public function list(EntityManagerInterface $entityManager):Response
+    public function list(EntityManagerInterface $entityManager):Response //odczytanie z bazy
     {
         $repository = $entityManager->getRepository(User::class);
-        $users = [];
+        $users = $repository->findAll();
+
         return $this->render('user/list.html.twig',['users'=>$users]);
     }
 
+    /**
+     * @param int $id
+     * @param EntityManagerInterface $entityManager
+     * @return Response
+     * @Route(path="/delete/{id}" ,name="delete")
+     */
+
+    public function delete(int $id, EntityManagerInterface $entityManager ):Response //usownie uzytkownikow
+    {
+        $repository = $entityManager->getRepository(User::class);
+        $user = $repository->find($id);    //id przekazane przez adres do funkcji
+
+        $entityManager->remove($user);
+        $entityManager->flush();
+        return $this->redirectToRoute('user_list');
+    }
+
+    /**
+     * @param User $user
+     * @param EntityManagerInterface $entityManager
+     * @param Request $request
+     * @return Response
+     * @Route(path="/edit/{id}", name="edit")
+     */
+    public function edit(User $user, EntityManagerInterface $entityManager , Request $request):Response //edytowanie danych
+    {
+        if ('POST' === $request->getMethod()){
+            $user->setName($request->get('name',''));
+            $user->setSurname($request->get('surname',''));
+            $entityManager->flush();
+            return $this->redirectToRoute('user_list');
+        }
+
+        return $this->render('user/edit.html.twig',['user'=>$user,]);
+    }
 }
