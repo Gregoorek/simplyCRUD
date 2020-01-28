@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <h1>osoby</h1>
+
+    <table>
+        <tr>
+            <td>imie</td>
+            <td>nazwisko</td>
+        </tr>
+        {% for users in users %}
+        <tr>
+            <td>{{ user.name }}</td>
+            <td>{{ user.surname }}</td>
+        </tr>
+        {% else %}
+        <tr>brako osob</tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

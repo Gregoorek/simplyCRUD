@@ -15,7 +15,8 @@ class User
 {
     /**
      * @ORM\Id()
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", nullable=false)
+     * @ORM\GeneratedValue(strategy="AUTO")
      * @var int
      */
     private $id;
@@ -70,9 +71,9 @@ class User
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getSurname(): string
+    public function getSurname(): ?string
     {
         return $this->surname;
     }
