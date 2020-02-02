@@ -34,11 +34,11 @@ class helloController extends AbstractController
     }
 
     /**
-     * @Route(path="/redirect/{action}" ,requirements={"action"="hello|curentDate"} )
-     * @param string $action
-     * @return RedirectResponse
-     * @throws \Exception
-     */
+ * @Route(path="/redirect/{action}" ,requirements={"action"="hello|curentDate"} )
+ * @param string $action
+ * @return RedirectResponse
+ * @throws \Exception
+ */
 
     public function moveToAction(string $action):RedirectResponse
     {

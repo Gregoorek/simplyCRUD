@@ -34,6 +34,14 @@ class User
     private $surname;
 
     /**
+     * @ORM\Column(type="boolean",nullable=false)
+     * @var bool
+     */
+
+    private $iceLover;
+
+
+    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Category")
      * @var Category|null
     **/
@@ -79,9 +87,9 @@ class User
     }
 
     /**
-     * @return Category
+     * @return Category|null
      */
-    public function getCategory(): Category
+    public function getCategory(): ?Category
     {
         return $this->category;
     }
@@ -101,6 +109,27 @@ class User
     {
         $this->name = $name;
     }
+
+    /**
+     * @return bool
+     */
+    public function isIceLover(): bool
+    {
+        return (bool) $this->iceLover;
+    }
+
+    /**
+     * @param bool $iceLover
+     */
+    public function setIceLover(bool $iceLover): void
+    {
+        $this->iceLover = $iceLover;
+    }
+
+
+
+
+
 
 
 
