@@ -3,11 +3,5 @@
 
     <h1>dodaj osobe</h1>
 
-    <form method="POST">
-        imie:<br>
-        <input name="name" value="{{ user.name }}" required><br>
-        nazwisko<br>
-        <input name="surname" value="{{ user.surname }}"><br>
-        <input type="submit" value="dodaj">
-    </form>
+    {{ form(form) }}
 {% endblock %}

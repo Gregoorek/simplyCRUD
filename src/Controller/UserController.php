@@ -5,8 +5,13 @@ namespace App\Controller;
 
 use App\Entity\User;
 
+
+use App\Type\UserType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,20 +34,17 @@ class UserController extends AbstractController
 
     public function create(Request $request, EntityManagerInterface $entityManager):Response //zapisywanie do bazy
     {
-        if ('POST' === $request->getMethod()){
+        $user = new User('');
 
-            $user = new User($request->get('name',''));
-            $user->setSurname($request->get('surname'));
+        $form = $this->createForm(UserType::class, $user);              //form generowany przez symf , builder w type\usertype.php
 
+        $form -> handleRequest($request);
+        if ($form->isSubmitted()){
             $entityManager->persist($user);
             $entityManager->flush();
-
-            return $this->redirectToRoute('user_list');   //przekeirowanie na inny route
-
-        }else{
-            $user = new User('');
+            return $this->redirectToRoute('user_list');
         }
-        return $this->render('user/create.html.twig',['user'=>$user,]);
+        return $this->render('user/create.html.twig',['form'=>$form->createView(),]);
     }
 
     /**
