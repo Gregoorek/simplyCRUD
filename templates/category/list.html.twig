@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <h1>osoby</h1>
+    <a href="{{ path('user_create') }}"/>dodaj nowa osobe </a>
+    <table>
+        <tr>
+            <td><h3>ID</h3></td>
+            <td><h3>imie</h3></td>
+            <td><h3>nazwisko</h3></td>
+            <td></td>
+            <td></td>
+
+        </tr>
+        {% for users in users %}
+        <tr>
+            <td>{{ users.id }}</td>
+            <td>{{ users.name }}</td>
+            <td>{{ users.surname }}</td>
+            <td><a href="{{ path('delete', {'id':users.id}) }}">Usuń</a> </td>
+            <td><a href="{{ path('edit', {'id':users.id}) }}">Edytuj</a> </td>
+        </tr>
+        {% else %}
+        <tr>braklo osob</tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
