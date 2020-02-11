@@ -1,27 +1,29 @@
 {% extends 'base.html.twig' %}
 {% block body %}
 
-    <h1>osoby</h1>
-    <a href="{{ path('user_create') }}"/>dodaj nowa osobe </a>
+    <h1>kategorie</h1>
+    <a href="{{ path('category_create') }}"/>dodaj kategorie </a>
     <table>
         <tr>
             <td><h3>ID</h3></td>
-            <td><h3>imie</h3></td>
-            <td><h3>nazwisko</h3></td>
+            <td><h3>Nazwa</h3></td>
+
             <td></td>
             <td></td>
 
         </tr>
-        {% for users in users %}
+        {% for value in category %}
         <tr>
-            <td>{{ users.id }}</td>
-            <td>{{ users.name }}</td>
-            <td>{{ users.surname }}</td>
-            <td><a href="{{ path('delete', {'id':users.id}) }}">Usuń</a> </td>
-            <td><a href="{{ path('edit', {'id':users.id}) }}">Edytuj</a> </td>
+            <td>{{ value.id }}</td>
+            <td>{{ value.name }}</td>
+
+
+
+            <td><a href="{{ path('editCategory', {'id':value.id}) }}">edytuj</a> </td>
+            <td><a href="{{ path('deleteCategory', {'id':value.id}) }}">usun</a> </td>
         </tr>
         {% else %}
-        <tr>braklo osob</tr>
+        <tr>braklo kategori</tr>
         {% endfor %}
     </table>
 

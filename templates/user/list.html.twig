@@ -17,8 +17,19 @@
             <td>{{ users.id }}</td>
             <td>{{ users.name }}</td>
             <td>{{ users.surname }}</td>
-            <td><a href="{{ path('delete', {'id':users.id}) }}">usownie osoby</a> </td>
-            <td><a href="{{ path('edit', {'id':users.id}) }}">zmien dane osoby</a> </td>
+            <td>{{ users.iceLover }}</td>
+
+
+            <td>
+                {% if users.category %}
+                {{ users.category.name }}
+                {% endif %}
+
+            </td>
+
+
+            <td><a href="{{ path('delete', {'id':users.id}) }}">Usuń</a> </td>
+            <td><a href="{{ path('edit', {'id':users.id}) }}">Edytuj</a> </td>
         </tr>
         {% else %}
         <tr>braklo osob</tr>

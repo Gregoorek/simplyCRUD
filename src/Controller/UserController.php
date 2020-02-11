@@ -39,7 +39,7 @@ class UserController extends AbstractController
         $form = $this->createForm(UserType::class, $user);              //form generowany przez symf , builder w type\usertype.php
 
         $form -> handleRequest($request);
-        if ($form->isSubmitted()){
+        if ($form->isSubmitted()&& $form->isValid()){
             $entityManager->persist($user);
             $entityManager->flush();
             return $this->redirectToRoute('user_list');

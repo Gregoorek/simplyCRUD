@@ -18,14 +18,15 @@ class Category
     * @ORM\Id()
     * @ORM\Column(type="integer")
     * @var int
+     *@ORM\GeneratedValue(strategy="AUTO")
     */
     private $id;
 
 
     /**
-     * @ORM\Column(type="string")
-     * @var string
-     */
+ * @ORM\Column(type="string")
+ * @var string
+ */
     private $name;
 
     /**
@@ -59,7 +60,7 @@ class Category
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -86,6 +87,11 @@ class Category
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function __toString():string
+    {
+        return $this->name;
     }
 
 
