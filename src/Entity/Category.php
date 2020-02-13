@@ -5,11 +5,16 @@ namespace App\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping\UniqueConstraint;
+
 
 /**
  * Class Category
  * @package App\Entity
  * @ORM\Entity()
+ * @UniqueEntity({"name"}, message="There is already an account with this email")
  */
 
 class Category
@@ -19,14 +24,19 @@ class Category
     * @ORM\Column(type="integer")
     * @var int
      *@ORM\GeneratedValue(strategy="AUTO")
+     *
     */
     private $id;
 
-
     /**
- * @ORM\Column(type="string")
- * @var string
- */
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 10,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters")
+     * @ORM\Column(type="string", unique=true)
+     * @var string
+     */
     private $name;
 
     /**

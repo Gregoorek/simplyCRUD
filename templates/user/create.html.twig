@@ -1,7 +1,39 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-
+<div class="container border">
     <h1>dodaj osobe</h1>
 
-    {{ form(form) }}
+    <div class="  border">
+        {{ form_start(form) }}
+
+            <div class="form-group">
+                <label class="">imie:</label>
+                {{ form_widget (form.name) }}
+                <div class="form-error">
+                    <b>{{ form_errors(form.name) }}</b>
+                </div>
+            </div>
+                <div class="form-group">
+                <label>nazwiko:</label>
+                {{ form_widget (form.surname) }}
+                <div class="form-error">
+                    <b>{{ form_errors(form.surname) }}</b>
+                </div>
+            </div>
+                kraj:
+                {{ form_widget (form.country) }}
+                <div class="form-error">
+                    <b>{{ form_errors(form.country) }}</b>
+                </div>
+
+                ketegoria:
+                {{ form_widget (form.category) }}
+                <div class="form-error">
+                    <b>{{ form_errors(form.category) }}</b>
+                </div>
+
+
+        {{ form_end(form) }}
+    </div>
+</div>
 {% endblock %}

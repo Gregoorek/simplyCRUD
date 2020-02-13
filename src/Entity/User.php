@@ -3,12 +3,14 @@
 
 namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Annotations\AnnotationRegistry;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * Class User
  * @package App\Entity
  * @ORM\Entity()
- *
  */
 
 class User
@@ -22,6 +24,12 @@ class User
     private $id;
 
     /**
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "Your first name must be at least {{ limit }} characters long",
+     *      maxMessage = "Your first name cannot be longer than {{ limit }} characters")
      * @ORM\Column(type="string")
      * @var string
      */
@@ -30,6 +38,7 @@ class User
     /**
      * @ORM\Column(type="string", nullable=true)
      * @var string
+     * @Assert\NotBlank()
      */
     private $surname;
 
@@ -47,6 +56,29 @@ class User
     **/
 
     private $category;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", nullable=true)
+     * @Assert\Country()
+     */
+    private $country;
+
+    /**
+     * @return string|null
+     */
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string|null $country
+     */
+    public function setCountry(?string $country): void
+    {
+        $this->country = $country;
+    }
 
     public function __construct(string $name)
     {
@@ -125,7 +157,6 @@ class User
     {
         $this->iceLover = $iceLover;
     }
-
 
 
 
