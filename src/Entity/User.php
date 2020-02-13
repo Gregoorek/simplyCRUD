@@ -26,7 +26,7 @@ class User
     /**
      * @Assert\NotBlank()
      * @Assert\Length(
-     *      min = 2,
+     *      min = 3,
      *      max = 50,
      *      minMessage = "Your first name must be at least {{ limit }} characters long",
      *      maxMessage = "Your first name cannot be longer than {{ limit }} characters")
