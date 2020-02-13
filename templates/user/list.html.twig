@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-
+<div class="container">
     <h1>osoby</h1>
     <a href="{{ path('user_create') }}"/>dodaj nowa osobe </a>
-    <table>
+    <table class="table border">
         <tr>
             <td><h3>ID</h3></td>
             <td><h3>imie</h3></td>
             <td><h3>nazwisko</h3></td>
+            <td></td>
             <td></td>
             <td></td>
 
@@ -35,5 +36,6 @@
         <tr>braklo osob</tr>
         {% endfor %}
     </table>
+</div>
 
 {% endblock %}
